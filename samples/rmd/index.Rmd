@@ -1,0 +1,39 @@
+---
+title: "World Telephones Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(shiny)
+```
+
+Column {.sidebar}
+-----------------------------------------------------------------------
+
+```{r}
+selectInput("region", "Region:", 
+            choices = colnames(WorldPhones),
+            selected = colnames(WorldPhones)[1])
+```
+
+Column
+-----------------------------------------------------------------------
+
+### Telephone Usage by Region
+
+```{r}
+renderPlot({
+  if (!is.null(input$region)) {
+    barplot(WorldPhones[, input$region] * 1000,
+            main = paste("Telephones in", input$region),
+            ylab = "Number of Telephones", 
+            xlab = "Year",
+            names.arg = rownames(WorldPhones),
+            col = "steelblue")
+  }
+})
+```

@@ -21,6 +21,7 @@ then
    # And seed with initial apps and index.html
    ln -s ${CMAKE_INSTALL_PREFIX}/shiny-server/samples/welcome.html /srv/shiny-server/index.html
    ln -s ${CMAKE_INSTALL_PREFIX}/shiny-server/samples/sample-apps /srv/shiny-server/sample-apps
+   ln -s ${CMAKE_INSTALL_PREFIX}/shiny-server/samples /srv/shiny-server/samples
 fi
 
 mkdir -p /etc/shiny-server
